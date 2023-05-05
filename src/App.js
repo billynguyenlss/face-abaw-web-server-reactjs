@@ -34,7 +34,7 @@ function App() {
   const ref = useRef(null);
 
   const URL = "http://127.0.0.1:8000/";
-  const SHOP_KEY = "live-camera_20230505114704"
+  const SHOP_KEY = "live-camera_20230505124622"
 
   const fetchMetadata = async () => {
     const response = await fetch(
@@ -45,8 +45,8 @@ function App() {
     console.log('response:', response)
     setAge(response['avg_age']);
     setGender(response['gender']);
-    console.log('Customer info: age:', age, 'gender:', gender, ' ...');
-    setMetadata("Customer info: age: " + age + " gender: " + gender, " ...");
+    console.log('Customer info: age:', age, 'Male:', gender, ' ...');
+    setMetadata("Customer info: age: " + age + " Male: " + gender, " ...");
     // if (index===1){
     //   // setMetadata(response['message']['australian'][0]);
     //   setMetadata("age: " + toString(age) + " gender: " + toString(gender));
