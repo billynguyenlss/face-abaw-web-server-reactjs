@@ -34,26 +34,49 @@ function App() {
   const ref = useRef(null);
 
   const URL = "http://127.0.0.1:8000/";
-  const SHOP_KEY = "live-camera_20230505124622"
+  const SHOP_KEY = "live-camera_20230529080548"
 
   const fetchMetadata = async () => {
+    console.log("start fetching data!")
     const response = await fetch(
       // "https://dog.ceo/api/breeds/list/all"
-      URL + SHOP_KEY, 
+      URL + SHOP_KEY, {
+        method:'GET',
+        mode:'cors'
+        // headers:{
+        //   'Content-Type': 'application/json'
+        // }
+      }
 
-    ).then((response) => response.json());
-    console.log('response:', response)
+    ).then((response) => {
+      console.log('response:', response);
+      return response.json()
+    });
+
+
     setAge(response['avg_age']);
     setGender(response['gender']);
     console.log('Customer info: age:', age, 'Male:', gender, ' ...');
     setMetadata("Customer info: age: " + age + " Male: " + gender, " ...");
-    // if (index===1){
-    //   // setMetadata(response['message']['australian'][0]);
-    //   setMetadata("age: " + toString(age) + " gender: " + toString(gender));
-    // } else {
-    //   setMetadata("hello world")
-    // }
   }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // const getApiData = () => {
+  //   fetch(URL + SHOP_KEY)
+  //   .then(res => {
+  //     return res.json()
+  //   })
+  //   .then(data=>{
+  //     console.log('GET!',data);
+  //     setAge(data['avg_age']);
+  //     setGender(data['gender']);
+  //     setMetadata("Customer info: age: " + age + " Male: " + gender, " ...");
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   getApiData();
+  // }, [age, gender, getApiData, metadata]);
 
   const selectNewVideoSrc = () => {
     var age_label = "40-80"
